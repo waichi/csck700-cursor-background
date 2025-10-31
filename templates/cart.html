@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}Shopping Cart - {{ shop.name }}{% endblock %}
+
+{% block content %}
+<div class="cart-page">
+    <h1>Shopping Cart</h1>
+    
+    {% if cart_items %}
+        <div class="cart-items">
+            {% for item in cart_items %}
+            <div class="cart-item">
+                <div class="cart-item-image">
+                    <div class="placeholder-image">
+                        <span>{{ item.product.name[:2] }}</span>
+                    </div>
+                </div>
+                <div class="cart-item-details">
+                    <h3>{{ item.product.name }}</h3>
+                    <p>{{ item.product.description }}</p>
+                    <p class="price">?{{ "{:,}".format(item.product.price) }} each</p>
+                </div>
+                <div class="cart-item-quantity">
+                    <label>Quantity:</label>
+                    <div class="quantity-controls">
+                        <a href="{{ url_for('update_cart', product_id=item.product.id, quantity=item.quantity-1) }}" class="btn btn-small">-</a>
+                        <span class="quantity">{{ item.quantity }}</span>
+                        <a href="{{ url_for('update_cart', product_id=item.product.id, quantity=item.quantity+1) }}" class="btn btn-small">+</a>
+                    </div>
+                </div>
+                <div class="cart-item-subtotal">
+                    <p class="subtotal-label">Subtotal:</p>
+                    <p class="subtotal-amount">?{{ "{:,}".format(item.subtotal) }}</p>
+                </div>
+                <div class="cart-item-remove">
+                    <a href="{{ url_for('remove_from_cart', product_id=item.product.id) }}" class="btn btn-danger btn-small">Remove</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="cart-summary">
+            <h2>Order Summary</h2>
+            <div class="summary-row">
+                <span>Total Items:</span>
+                <span>{{ cart_items|length }}</span>
+            </div>
+            <div class="summary-row total">
+                <span>Total Amount:</span>
+                <span>?{{ "{:,}".format(total) }}</span>
+            </div>
+            <a href="{{ url_for('checkout') }}" class="btn btn-primary btn-block btn-large">Proceed to Checkout</a>
+            <a href="{{ url_for('products') }}" class="btn btn-secondary btn-block">Continue Shopping</a>
+        </div>
+    {% else %}
+        <div class="empty-cart">
+            <p>Your cart is empty.</p>
+            <a href="{{ url_for('products') }}" class="btn btn-primary">Start Shopping</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

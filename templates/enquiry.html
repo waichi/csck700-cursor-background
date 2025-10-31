@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us - {{ shop.name }}{% endblock %}
+
+{% block content %}
+<div class="enquiry-page">
+    <h1>Contact Us</h1>
+    <p>Have a question or enquiry? Fill out the form below and we'll get back to you.</p>
+    
+    <form method="post" action="{{ url_for('enquiry') }}" class="enquiry-form">
+        <div class="form-group">
+            <label for="name">Name <span class="required">*</span></label>
+            <input type="text" id="name" name="name" value="{{ name or '' }}" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="email">Email <span class="required">*</span></label>
+            <input type="email" id="email" name="email" value="{{ email or '' }}" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="subject">Subject <span class="required">*</span></label>
+            <input type="text" id="subject" name="subject" value="{{ subject or '' }}" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="message">Message <span class="required">*</span></label>
+            <textarea id="message" name="message" rows="6" required>{{ message or '' }}</textarea>
+        </div>
+        
+        <button type="submit" class="btn btn-primary btn-large">Submit Enquiry</button>
+    </form>
+</div>
+{% endblock %}

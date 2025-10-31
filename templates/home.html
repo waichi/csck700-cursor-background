@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Home - {{ shop.name }}{% endblock %}
+
+{% block content %}
+<div class="home-page">
+    <div class="shop-header">
+        <img src="{{ url_for('static', filename='images/IKWStoreLogo.png') }}" alt="{{ shop.name }} Logo" class="shop-logo">
+        <h1>Welcome to {{ shop.name }}</h1>
+        <p class="tagline">Your one-stop shop for quality computer accessories</p>
+    </div>
+
+    <div class="shop-info-card">
+        <h2>Shop Information</h2>
+        <div class="info-grid">
+            <div class="info-item">
+                <strong>Shop Name:</strong>
+                <span>{{ shop.name }}</span>
+            </div>
+            <div class="info-item">
+                <strong>Contact Name:</strong>
+                <span>{{ shop.contact_name }}</span>
+            </div>
+            <div class="info-item">
+                <strong>Email:</strong>
+                <span><a href="mailto:{{ shop.email }}">{{ shop.email }}</a></span>
+            </div>
+            <div class="info-item">
+                <strong>Phone:</strong>
+                <span><a href="tel:{{ shop.phone }}">{{ shop.phone }}</a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="cta-section">
+        <a href="{{ url_for('products') }}" class="btn btn-primary btn-large">Browse Products</a>
+        <a href="{{ url_for('enquiry') }}" class="btn btn-secondary btn-large">Contact Us</a>
+    </div>
+</div>
+{% endblock %}

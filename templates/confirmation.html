@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Enquiry Confirmation - {{ shop.name }}{% endblock %}
+
+{% block content %}
+<div class="confirmation-page">
+    <div class="confirmation-header">
+        <div class="checkmark">?</div>
+        <h1>Thank You!</h1>
+        <p>Your enquiry has been received successfully.</p>
+    </div>
+    
+    <div class="confirmation-details">
+        <h2>Enquiry Details</h2>
+        <div class="detail-row">
+            <strong>Name:</strong>
+            <span>{{ name }}</span>
+        </div>
+        <div class="detail-row">
+            <strong>Email:</strong>
+            <span>{{ email }}</span>
+        </div>
+        <div class="detail-row">
+            <strong>Subject:</strong>
+            <span>{{ subject }}</span>
+        </div>
+        <div class="detail-row">
+            <strong>Message:</strong>
+            <span class="message-content">{{ message }}</span>
+        </div>
+    </div>
+    
+    <div class="confirmation-note">
+        <p><strong>Note:</strong> This is a demonstration. No email has been sent.</p>
+    </div>
+    
+    <div class="confirmation-actions">
+        <a href="{{ url_for('home') }}" class="btn btn-primary">Return to Home</a>
+        <a href="{{ url_for('products') }}" class="btn btn-secondary">Browse Products</a>
+    </div>
+</div>
+{% endblock %}
