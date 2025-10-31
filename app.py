@@ -213,4 +213,4 @@ def enquiry():
     return render_template('enquiry.html', shop=SHOP_INFO)
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=True, host='127.0.0.1', port=8080)
